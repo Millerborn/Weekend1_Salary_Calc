@@ -1,6 +1,7 @@
 console.log('Salary Calculator');
 
 let employees = [];
+let monthlyBudget = 0;
 
 class Employee {
     constructor(firstName, lastName, id, title, annualSalary) {
@@ -8,7 +9,7 @@ class Employee {
         this.lastName = lastName;
         this.id = id;
         this.title = title;
-        this.annualSalary = annualSalary;
+        this.annualSalary = parseInt(annualSalary).toFixed(2);
     }
 }
 
@@ -17,6 +18,7 @@ $(document).ready(onReady);
 function onReady(){
     console.log('jQ');
     $('#submitInformation').on('click', addEmployee);
+
 }
 
 
@@ -33,7 +35,7 @@ function addEmployee(){
     $('#employeeList').append(newEmployee);   
  
     appendEmployeeList();
-
+    calculateMonthly();
 
 }
 
@@ -54,4 +56,15 @@ function appendEmployeeList(){
         <td>${employee.title}</td>
         <td>${employee.annualSalary}</td></tr>`);        
         }
+}
+
+    // calculate monthly budget for employee
+function calculateMonthly(monthlyExpense){
+    console.log('Calculate monthly budget');
+    let monthlySalary = annualSalary / 12;    
+    let outputDiv = $('#outputDiv')
+    outputDiv.empty();
+    outputDiv.append(monthlyBudget + monthlySalary)
+    console.log('logging');
+
 }
