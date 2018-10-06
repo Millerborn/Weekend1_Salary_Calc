@@ -1,7 +1,7 @@
 console.log('Salary Calculator');
 
 let employees = [];
-let monthlyBudget = 0;
+// let annualSalary = 0;
 
 class Employee {
     constructor(firstName, lastName, id, title, annualSalary) {
@@ -9,7 +9,7 @@ class Employee {
         this.lastName = lastName;
         this.id = id;
         this.title = title;
-        this.annualSalary = parseInt(annualSalary).toFixed(2);
+        this.annualSalary = parseFloat(annualSalary).toFixed(2);
     }
 }
 
@@ -18,7 +18,7 @@ $(document).ready(onReady);
 function onReady(){
     console.log('jQ');
     $('#submitInformation').on('click', addEmployee);
-
+    $('#deleteEmpl').on('click', '.deleteEmployee', deleteEmployee);
 }
 
 
@@ -54,17 +54,43 @@ function appendEmployeeList(){
         <td>${employee.lastName}</td> 
         <td>${employee.id}</td>
         <td>${employee.title}</td>
-        <td>${employee.annualSalary}</td></tr>`);        
+        <td>${employee.annualSalary}</td></tr>
+        <tr><button class="deleteEmpl">delete employee</button></tr>
+        `);        
         }
 }
 
     // calculate monthly budget for employee
 function calculateMonthly(monthlyExpense){
+
+    for()
+
     console.log('Calculate monthly budget');
-    let monthlySalary = annualSalary / 12;    
+    let monthlySalary = Number((annualSalary / 12).toFixed(2));    
     let outputDiv = $('#outputDiv')
     outputDiv.empty();
-    outputDiv.append(monthlyBudget + monthlySalary)
+    outputDiv.append('Monthly Budget', monthlySalary)
     console.log('logging');
 
 }
+
+    // append employee table for delete button
+
+    // delete employee function
+    function deleteEmployee(){
+        console.log('Delete Employee function');
+        let $delete = $(this).parent().text();
+        console.log('selectedEmployee');
+        for(let i = 0; i < employees.length; i++) {
+            if($delete.includes(employees[i].firstName)){
+                console.log('delete employee');
+                employees.splice(i, 1);
+                $(this).parent().remove();
+                console.log('noice');
+                return true;
+                
+                
+            }
+        }
+        
+    }
