@@ -17,8 +17,8 @@ $(document).ready(onReady);
 function onReady(){
     console.log('jQ');
     $('#submitInformation').on('click', addEmployee);
-    appendEmployeeList();
 }
+
 
 function addEmployee(){
     event.preventDefault();
@@ -30,20 +30,28 @@ function addEmployee(){
     let empAnnualSalary = $('#annualSalary').val();
     let newEmployee = new Employee(empFirstName, empLastName, empId, empTitle, empAnnualSalary);
     employees.push(newEmployee);
-    console.log(employees);
-    $('.employeeList').append(newEmployee);    
+    $('#employeeList').append(newEmployee);   
+ 
+    appendEmployeeList();
+
 
 }
 
+// function to add Employee information the the DOM
 function appendEmployeeList(){
+    let $element = $('#employeeTable');
     console.log('Add Employee Information');
-    $('#submitInformation').on('click', function(){
-        $('#form').empty();
-        $('.employeeList').append('<li>' + $('#firstName').val() + '</li>')
-        $('.employeeList').append('<li>' + $('#lastName').val() + '</li>')
-        $('.employeeList').append('<li>' + $('#employeeId').val() + '</li>')
-        $('.employeeList').append('<li>' + $('#title').val() + '</li>')
-        $('.employeeList').append('<li>' + $('#annualSalary').val() + '</li>')
-    });
-}
+        $element.empty();
+        console.log(employees);
 
+    for(let employee of employees){
+        console.log('in for loop');
+            
+        $('#employeeTable').append(`
+        <tr><td>${employee.firstName}</td>
+        <td>${employee.lastName}</td> 
+        <td>${employee.id}</td>
+        <td>${employee.title}</td>
+        <td>${employee.annualSalary}</td></tr>`);        
+        }
+}

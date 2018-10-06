@@ -8,7 +8,21 @@ body {
     font-size: 50px
 }
 
-.employeeList {
-    background: white;
+#employeeList {
+    display: inline;
     
+}
+
+table {
+    width: 100%;
+}
+
+div {
+    margin: 50px;
+}
+
+td, th {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
 }

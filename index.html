@@ -11,22 +11,39 @@
 </head>
 <body>
     <h1 id="salaryHeader">Sirius Salary Calculator</h1>
-    <h3>Add Employee</h3>
-    <form id="formId">
-        <label for="firstName">First Name:</label>
-        <input id="firstName" type="text"/>
-        <label for="lastName">Last Name:</label>
-        <input id="lastName" type="text"/>
-        <label for="employeeId">ID:</label>
-        <input id="employeeId" type="text"/>
-        <label for="employee">Title:</label>
-        <input id="title" type="text"/>
-        <label for="annualSalary">Annual Salary:</label>
-        <input id="annualSalary" type="text"/>
-        <button id="submitInformation">Submit</button>
-    </form>
     <div>
-        <ul class="employeeList"></ul>
+            <!-- Labels for employees -->
+            <h3>Add Employee</h3>
+            <form id="formId">
+                <label for="firstName">First Name:</label>
+                <input id="firstName" type="text"/>
+                <label for="lastName">Last Name:</label>
+                <input id="lastName" type="text"/>
+                <label for="employeeId">ID:</label>
+                <input id="employeeId" type="text"/>
+                <label for="employee">Title:</label>
+                <input id="title" type="text"/>
+                <label for="annualSalary">Annual Salary:</label>
+                <input id="annualSalary" type="text"/>
+                <button id="submitInformation">Submit</button>
+            </form>
+
+        <!-- employee table information -->
+
+        <table id="employeeTable">
+    <thead>
+        <tr>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>ID</th>
+            <th>Title</th>
+            <th>Annual Salary</th>
+        </tr>
+    </thead>
+            <!-- <tbody id="employeeList">
+
+            </tbody> -->
+        </table>
     </div>
 </body>
 </html>
