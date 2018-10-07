@@ -19,7 +19,7 @@ table {
 
 div {
     margin: 50px;
-    background-color: antiquewhite;
+    background-color: whitesmoke;
     padding: 15px;
     border-radius: 10px;
 }
@@ -32,4 +32,25 @@ td, th {
 
 tr:nth-child(even) {
     backgorund-color:#dddddd;
+}
+tr:nth-child(odd) {
+    backgorund-color: grey;
+}
+
+#submitInformation {
+    border-radius: 10px;
+
+}
+
+#buttonDiv {
+    margin: 1px;
+    border: 10px;
+    text-align: right;
+    padding: 20px;
+    width: 930px;
+}
+
+#delete {
+    width: 50px;
+    text-align: center;
 }
