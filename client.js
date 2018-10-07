@@ -76,6 +76,7 @@ function calculateMonthly(){
     outputDiv.empty();
     outputDiv.append('Monthly Budget:', monthlySalary)
     console.log('logging');
+    overBudget();
 
 }
 
@@ -98,4 +99,11 @@ function calculateMonthly(){
             }
         }
         
+    }
+
+    // change background red if monthly is over $20,000
+    function overBudget(){
+        if(monthlySalary > 20000){
+            $('monthlySalary').css('background-color', 'red');
+        }
     }

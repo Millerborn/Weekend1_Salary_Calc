@@ -31,7 +31,7 @@ td, th {
 }
 
 tr:nth-child(even) {
-    backgorund-color:#dddddd;
+    backgorund-color:white;
 }
 tr:nth-child(odd) {
     backgorund-color: grey;
