@@ -17,7 +17,7 @@ function onReady(){
     $('#submitInformation').on('click', addEmployee);
     $('#submitInformation').on('click', appendEmployeeList);
     $('#submitInformation').on('click', calculateMonthly);
-    $('#delete').on('click', deleteEmployee);
+    $('#employeeTable').on('click', '.deleteEmployee', deleteEmployee);
 }
 
 
@@ -51,26 +51,28 @@ function appendEmployeeList(){
         <td>${employee.id}</td>
         <td>${employee.title}</td>
         <td>${employee.annualSalary}</td>
-        <td><button id="delete">delete</button></td>
+        <td><button id="deleteEmp">delete</button></td>
         </tr>`);        
         }
 }
 
     // calculate monthly budget for employee
 function calculateMonthly(){
-    let monthlySalary = 0;
+    let monthlySal = 0;
     // why is it not pushing employee salary to DOM  
     // divide employee salary by 12 for monthly budget
     console.log('Calculating monthly budget');
     for(let sal of employees){
-        monthlySalary = sal.annualSalary/12; 
+        monthlySal = sal.annualSalary/12; 
         $('#outputDiv').empty(); 
-        $('#outputDiv').append('Monthly Budget:', monthlySalary);
+        $('#outputDiv').append('Monthly Budget:', monthlySal.toFixed(2));
         console.log('output div: Monthly Budget');
+        // change background red if monthly is over $20,000
         if(monthlySalary > 20000){
             $('#outputDiv').css('background-color', 'red');
         }
-       }  // change background red if monthly is over $20,000
+        
+       } 
     console.log('logging');
 }
 
@@ -87,7 +89,6 @@ function calculateMonthly(){
                 employees.splice(i, 1);
                 $(this).closest('tr').find('td').remove();
                 console.log('delete employee');
-                // return true;
                 
             }
         }

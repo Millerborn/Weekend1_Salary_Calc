@@ -30,10 +30,10 @@ td, th {
     padding: 8px;
 }
 
-table:nth-child(even) {
+placeholder:nth-child(even) {
     backgorund-color:white;
 }
-table:nth-child(odd) {
+placeholder:nth-child(odd) {
     backgorund-color: grey;
 }
 
