@@ -66,7 +66,7 @@ function calculateMonthly(){
     for(let sal of employees){
         monthlySal += sal.annualSalary/12; 
         $('#outputDiv').empty(); 
-        $('#outputDiv').append('Monthly Budget:', monthlySal.toFixed(2));
+        $('#outputDiv').append('Monthly Budget: ', '', monthlySal.toFixed(2));
         console.log('output div: Monthly Budget');
         // change background red if monthly is over $20,000
         if(monthlySalary > 20000){
