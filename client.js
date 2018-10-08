@@ -17,7 +17,6 @@ function onReady(){
     $('#submitInformation').on('click', addEmployee);
     $('#submitInformation').on('click', appendEmployeeList);
     $('#submitInformation').on('click', calculateMonthly);
-    $('#employeeTable').on('click', '.deleteEmployee', deleteEmployee);
 }
 
 
@@ -54,6 +53,8 @@ function appendEmployeeList(){
         <td><button id="deleteEmp">delete</button></td>
         </tr>`);        
         }
+        $('#deleteEmp').on('click', deleteEmployee);
+
 }
 
     // calculate monthly budget for employee
@@ -63,7 +64,7 @@ function calculateMonthly(){
     // divide employee salary by 12 for monthly budget
     console.log('Calculating monthly budget');
     for(let sal of employees){
-        monthlySal = sal.annualSalary/12; 
+        monthlySal += sal.annualSalary/12; 
         $('#outputDiv').empty(); 
         $('#outputDiv').append('Monthly Budget:', monthlySal.toFixed(2));
         console.log('output div: Monthly Budget');
