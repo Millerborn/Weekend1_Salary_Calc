@@ -30,10 +30,10 @@ td, th {
     padding: 8px;
 }
 
-tr:nth-child(even) {
+table:nth-child(even) {
     backgorund-color:white;
 }
-tr:nth-child(odd) {
+table:nth-child(odd) {
     backgorund-color: grey;
 }
 
@@ -43,11 +43,12 @@ tr:nth-child(odd) {
 }
 
 #buttonDiv {
-    margin: 1px;
+    margin: 2px;
     border: 10px;
     text-align: right;
-    padding: 20px;
+    padding: 25px;
     width: 930px;
+
 }
 
 #delete {
@@ -58,3 +59,4 @@ tr:nth-child(odd) {
 .red {
     color: red;
 }
+

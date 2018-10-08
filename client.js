@@ -15,8 +15,9 @@ $(document).ready(onReady);
 
 function onReady(){
     $('#submitInformation').on('click', addEmployee);
-    // $('#submitInformation').on('click',calculateMonthly.empAnnualSalary);
-
+    $('#submitInformation').on('click', appendEmployeeList);
+    $('#submitInformation').on('click', calculateMonthly);
+    $('#delete').on('click', deleteEmployee);
 }
 
 
@@ -30,13 +31,7 @@ function addEmployee(){
     let empAnnualSalary = $('#annualSalary').val();
     let newEmployee = new Employee(empFirstName, empLastName, empId, empTitle, empAnnualSalary);
     employees.push(newEmployee);
-    $('#employeeList').append(newEmployee);       
-    appendEmployeeList();
-    console.log('new employee added');
-    calculateMonthly();
-    console.log('calculate monthly');
-    $('#delete').on('click', deleteEmployee);
-    console.log('delete emp');
+    $('#employeeList').append(newEmployee);
     
     
 
@@ -53,33 +48,30 @@ function appendEmployeeList(){
         $('#employeeTable').append(`
         <tr><td>${employee.firstName}</td>
         <td>${employee.lastName}</td> 
-        <td>${employee.id}<button id="delete">delete</button></td>
+        <td>${employee.id}</td>
         <td>${employee.title}</td>
-        <td>${employee.annualSalary}</td></tr>
-        `);        
+        <td>${employee.annualSalary}</td>
+        <td><button id="delete">delete</button></td>
+        </tr>`);        
         }
 }
 
     // calculate monthly budget for employee
 function calculateMonthly(){
-    console.log('in calculate monthly expense');
-    // push employee salary to DOM  
-    for(let employee of employees){
-         let element = $('#annualSalary');
-         element.empty();
-         console.log('empty monthly salary'); 
-         $('#outputDiv').append(employee.annualSalary);
-         log
-        }
-     // divide employee salary by 12 for monthly budget
+    let monthlySalary = 0;
+    // why is it not pushing employee salary to DOM  
+    // divide employee salary by 12 for monthly budget
     console.log('Calculating monthly budget');
-    let monthlySalary = Number((annualSalary / 12).toFixed(2));    
-    let outputDiv = $('#outputDiv')
-    outputDiv.empty();
-    outputDiv.append('Monthly Budget:', monthlySalary)
+    for(let sal of employees){
+        monthlySalary = sal.annualSalary/12; 
+        $('#outputDiv').empty(); 
+        $('#outputDiv').append('Monthly Budget:', monthlySalary);
+        console.log('output div: Monthly Budget');
+        if(monthlySalary > 20000){
+            $('#outputDiv').css('background-color', 'red');
+        }
+       }  // change background red if monthly is over $20,000
     console.log('logging');
-    overBudget();
-
 }
 
     // append employee table for delete button
@@ -90,29 +82,14 @@ function calculateMonthly(){
         let $delete = $(this).closest('tr').find('td').text();
         console.log('selectedEmployee');
         for(let i = 0; i < employees.length; i++) {
-            if($delete.includes(employees[i].id)){
-                console.log('delete employee');
+            if($delete.includes(employees[i].firstName)){
+                console.log('running $delete employee if statement');
                 employees.splice(i, 1);
                 $(this).closest('tr').find('td').remove();
                 console.log('delete employee');
                 // return true;
                 
-                
             }
         }
         
-    }
-
-    // change background red if monthly is over $20,000
-    function overBudget(){
-        if(monthlySalary > 20000){
-            $('monthlySalary').css('background-color', 'red');
-        }
-    }
-
-    // alternate red background function
-    function altOverBudget(){
-        if(monthlySalary > 20000){
-            $('#outputdiv').toggleClass('red')
-        }
     }
