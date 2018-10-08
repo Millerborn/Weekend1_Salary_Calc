@@ -64,10 +64,12 @@ function appendEmployeeList(){
 function calculateMonthly(){
     console.log('in calculate monthly expense');
     // push employee salary to DOM  
-    for(let sal of employees){
+    for(let employee of employees){
          let element = $('#annualSalary');
          element.empty();
          console.log('empty monthly salary'); 
+         $('#outputDiv').append(employee.annualSalary);
+         log
         }
      // divide employee salary by 12 for monthly budget
     console.log('Calculating monthly budget');
@@ -88,12 +90,12 @@ function calculateMonthly(){
         let $delete = $(this).closest('tr').find('td').text();
         console.log('selectedEmployee');
         for(let i = 0; i < employees.length; i++) {
-            if($delete.includes(employees[i].firstName)){
+            if($delete.includes(employees[i].id)){
                 console.log('delete employee');
                 employees.splice(i, 1);
                 $(this).closest('tr').find('td').remove();
                 console.log('delete employee');
-                return true;
+                // return true;
                 
                 
             }
@@ -105,5 +107,12 @@ function calculateMonthly(){
     function overBudget(){
         if(monthlySalary > 20000){
             $('monthlySalary').css('background-color', 'red');
+        }
+    }
+
+    // alternate red background function
+    function altOverBudget(){
+        if(monthlySalary > 20000){
+            $('#outputdiv').toggleClass('red')
         }
     }
