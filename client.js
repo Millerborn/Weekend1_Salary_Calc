@@ -12,11 +12,12 @@ class Employee {
 }
 
 $(document).ready(onReady);
-
+// ready to run
 function onReady(){
     $('#submitInformation').on('click', addEmployee);
     $('#submitInformation').on('click', appendEmployeeList);
     $('#submitInformation').on('click', calculateMonthly);
+    $('#employeeTable').on('click', ('.deleteEmp'), deleteEmployee);
 }
 
 
@@ -30,9 +31,7 @@ function addEmployee(){
     let empAnnualSalary = $('#annualSalary').val();
     let newEmployee = new Employee(empFirstName, empLastName, empId, empTitle, empAnnualSalary);
     employees.push(newEmployee);
-    $('#employeeList').append(newEmployee);
-    
-    
+    $('#employeeList').append(newEmployee);    
 
 }
 
@@ -50,11 +49,9 @@ function appendEmployeeList(){
         <td>${employee.id}</td>
         <td>${employee.title}</td>
         <td>${employee.annualSalary}</td>
-        <td><button id="deleteEmp">delete</button></td>
+        <td><button class="deleteEmp">delete</button></td>
         </tr>`);        
-        }
-        $('#deleteEmp').on('click', deleteEmployee);
-
+    }
 }
 
     // calculate monthly budget for employee
@@ -69,29 +66,32 @@ function calculateMonthly(){
         $('#outputDiv').append('Monthly Budget: ', '', monthlySal.toFixed(2));
         console.log('output div: Monthly Budget');
         // change background red if monthly is over $20,000
-        if(monthlySalary > 20000){
+        if(monthlySal >= 20000){
             $('#outputDiv').css('background-color', 'red');
+            console.log('ran through color if statement');
+            
         }
-        
-       } 
-    console.log('logging');
+    } 
 }
 
     // append employee table for delete button
 
     // delete employee function
     function deleteEmployee(){
-        console.log('Delete Employee function');
-        let $delete = $(this).closest('tr').find('td').text();
-        console.log('selectedEmployee');
-        for(let i = 0; i < employees.length; i++) {
-            if($delete.includes(employees[i].firstName)){
-                console.log('running $delete employee if statement');
-                employees.splice(i, 1);
-                $(this).closest('tr').find('td').remove();
-                console.log('delete employee');
+        console.log('clicking delete');
+        $(this).closest('tr').remove();
+
+        // console.log('Delete Employee function');
+        // let $delete = $(this).closest('tr').find('td').text();
+        // console.log('selectedEmployee');
+        // for(let i = 0; i < employees.length; i++) {
+        //     if($delete.includes(employees[i].firstName)){
+        //         console.log('running $delete employee if statement');
+        //         employees.splice(i, 1);
+        //         $(this).closest('tr').find('td').remove();
+        //         console.log('delete employee');
                 
-            }
-        }
+        //     }
+        // }
         
     }
