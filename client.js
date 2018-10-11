@@ -20,8 +20,7 @@ function onReady(){
     $('#employeeTable').on('click', ('.deleteEmp'), deleteEmployee);
 }
 
-
-function addEmployee(){
+function addEmployee(event){
     event.preventDefault();
     console.log('Add employee button clicked');
     let empFirstName = $('#firstName').val();
@@ -52,26 +51,27 @@ function appendEmployeeList(){
         <td><button class="deleteEmp">delete</button></td>
         </tr>`);        
     }
+    clearInfo();
 }
 
     // calculate monthly budget for employee
 function calculateMonthly(){
     let monthlySal = 0;
-    // why is it not pushing employee salary to DOM  
+    $('#outputDiv').empty();
+    $('#outputDiv').removeClass('red');
     // divide employee salary by 12 for monthly budget
     console.log('Calculating monthly budget');
     for(let sal of employees){
         monthlySal += sal.annualSalary/12; 
-        $('#outputDiv').empty(); 
-        $('#outputDiv').append('Monthly Budget: ', '', monthlySal.toFixed(2));
+    } 
+    $('#outputDiv').append('Monthly Budget: ', '', monthlySal.toFixed(2));
         console.log('output div: Monthly Budget');
         // change background red if monthly is over $20,000
         if(monthlySal >= 20000){
-            $('#outputDiv').css('background-color', 'red');
+            $('#outputDiv').addClass('red');
             console.log('ran through color if statement');
             
         }
-    } 
 }
 
     // append employee table for delete button
@@ -82,16 +82,27 @@ function calculateMonthly(){
         $(this).closest('tr').remove();
 
         // console.log('Delete Employee function');
-        // let $delete = $(this).closest('tr').find('td').text();
-        // console.log('selectedEmployee');
-        // for(let i = 0; i < employees.length; i++) {
-        //     if($delete.includes(employees[i].firstName)){
-        //         console.log('running $delete employee if statement');
-        //         employees.splice(i, 1);
-        //         $(this).closest('tr').find('td').remove();
-        //         console.log('delete employee');
+        let $delete = $(this).closest('tr').find('td').text();
+        console.log('selectedEmployee');
+        for(let i = 0; i < employees.length; i++) {
+            if($delete.includes(employees[i].firstName)){
+                console.log('running $delete employee if statement');
+                employees.splice(i, 1);
+                $(this).closest('tr').find('td').remove();
+                console.log('delete employee');
                 
-        //     }
-        // }
+            }
+
+        }
+
+        calculateMonthly();
         
+    }
+
+    function clearInfo() {
+        $('#firstName').val('');
+        $('#lastName').val('');
+        $('#employeeId').val('');
+        $('#title').val('');
+        $('#annualSalary').val('');
     }
